@@ -1,7 +1,5 @@
 # Make sure the handlers folder exists
 directory node["chef_handler"]["handler_path"] do
-  owner "root"
-  group "root"
   mode "755"
   recursive true
   action :nothing
@@ -17,8 +15,6 @@ handler_file = ::File.join(node["chef_handler"]["handler_path"], 'sentry.rb')
 
 cookbook_file handler_file do
   source "sentry.rb"
-  owner "root"
-  group "root"
   mode "644"
   action :nothing
 end.run_action(:create)
