@@ -5,10 +5,13 @@ directory node["chef_handler"]["handler_path"] do
   action :nothing
 end.run_action(:create)
 
-chef_gem "uuidtools"
+chef_gem "uuidtools" do
+  compile_time true if Chef::Resource::ChefGem.method_defined?(:compile_time)
+end
 
 chef_gem "sentry-raven" do
   version "0.9.4"
+  compile_time true if Chef::Resource::ChefGem.method_defined?(:compile_time)
 end
 
 handler_file = ::File.join(node["chef_handler"]["handler_path"], 'sentry.rb')
